@@ -3,6 +3,7 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { processOrder } from "../redux/actions/ordersActions";
+import "./Scheduler.css";
 
 class Scheduler extends React.Component {
   state = {
@@ -73,7 +74,7 @@ class Scheduler extends React.Component {
       <React.Fragment>
         {processing ? (
           <div className="container">
-            <h2 style={{ marginTop: "15rem" }}>...Processing Request</h2>
+            <h2 className="processing-request-header">...Processing Request</h2>
           </div>
         ) : (
           <div className="container">
@@ -83,14 +84,7 @@ class Scheduler extends React.Component {
               </div>
             </div>
             <div className="row">
-              <div
-                className="col"
-                style={{
-                  justifyContent: "center",
-                  display: "flex",
-                  marginBottom: "1rem",
-                }}
-              >
+              <div className="col different-service-flex-box">
                 <button
                   className="btn btn-danger"
                   type="button"
@@ -102,30 +96,17 @@ class Scheduler extends React.Component {
             </div>
             <div className="row">
               <div className="col">
-                <div
-                  className="Cards"
-                  style={{ display: "flex", justifyContent: "center" }}
-                >
-                  <div
-                    className="Card"
-                    style={{ width: "400px", height: "400px" }}
-                    onClick={this.confirmOrder}
-                  >
-                    <img src={image} alt={title} style={{ width: "26rem" }} />
+                <div className="Cards card-flex-box">
+                  <div className="Card card-size" onClick={this.confirmOrder}>
+                    <img src={image} alt={title} className="card-size-image" />
                     <h3>{title}</h3>
-                    <h3 style={{ fontSize: "20px" }}>{text}</h3>
+                    <h3 className="card-size-text">{text}</h3>
                   </div>
                 </div>
               </div>
               <div className="col">
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    flexDirection: "column",
-                  }}
-                >
-                  <h3 style={{ width: "100%", fontSize: "27px" }}>
+                <div className="enter-details-flexbox">
+                  <h3 className="enter-details-header">
                     Enter your first name, last name, phone number, address, and
                     email.
                   </h3>
@@ -133,7 +114,7 @@ class Scheduler extends React.Component {
                     type="text"
                     name="name"
                     placeholder="Enter your name"
-                    style={{ textAlign: "center", marginTop: "1rem" }}
+                    className="input-text"
                     onChange={this.setValue}
                     value={name}
                   />
@@ -141,11 +122,7 @@ class Scheduler extends React.Component {
                     type="text"
                     name="lastName"
                     placeholder="Enter your last name"
-                    style={{
-                      textAlign: "center",
-                      marginTop: "1rem",
-                      marginBottom: "1rem",
-                    }}
+                    className="input-text"
                     onChange={this.setValue}
                     value={lastName}
                   />
@@ -153,10 +130,7 @@ class Scheduler extends React.Component {
                     type="tel"
                     name="phoneNumber"
                     placeholder="Enter your phone number"
-                    style={{
-                      textAlign: "center",
-                      marginBottom: "1rem",
-                    }}
+                    className="input-text"
                     onChange={this.setValue}
                     value={phoneNumber}
                   />
@@ -164,10 +138,7 @@ class Scheduler extends React.Component {
                     type="text"
                     name="address"
                     placeholder="Enter your address"
-                    style={{
-                      textAlign: "center",
-                      marginBottom: "1rem",
-                    }}
+                    className="input-text"
                     onChange={this.setValue}
                     value={address}
                   />
@@ -175,16 +146,11 @@ class Scheduler extends React.Component {
                     type="text"
                     name="email"
                     placeholder="Enter your email"
-                    style={{
-                      textAlign: "center",
-                      marginBottom: "1rem",
-                    }}
+                    className="input-text"
                     onChange={this.setValue}
                     value={email}
                   />
-                  {formError ? (
-                    <p style={{ color: "red", textAlign: "center" }}>{error}</p>
-                  ) : null}
+                  {formError ? <p className="error-text">{error}</p> : null}
                 </div>
               </div>
             </div>

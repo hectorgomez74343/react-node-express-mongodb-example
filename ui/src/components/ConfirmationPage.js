@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import Success from "./success";
+import "./ConfirmationPage.css";
 
 class ConfirmationPage extends React.Component {
   routeToMainMenu = () => {
@@ -18,7 +19,7 @@ class ConfirmationPage extends React.Component {
             <h4 className="phone-number">202-562-6656</h4>
             <h1 className="phone-number">Your order number is 5354992</h1>
 
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div className="goback-main-menu-flex-box">
               <button
                 className="btn btn-danger"
                 type="button"

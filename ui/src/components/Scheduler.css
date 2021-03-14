@@ -1,0 +1,48 @@
+.processing-request-header {
+    margin-top: 15rem;
+}
+
+.different-service-flex-box {
+    justify-content: center;
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.card-flex-box {
+    display: flex;
+    justify-content: center;
+}
+
+.card-size {
+    width: 400px;
+    height: 400px; 
+}
+
+.card-size-image {
+    width: 26rem;
+}
+
+.card-size-text {
+   font-size: 20px;
+}
+
+.input-text {
+    text-align: center;
+    margin-bottom: 1rem ;
+}
+
+.error-text {
+    color:red;
+    text-align: center;
+}
+
+.enter-details-header {
+    width: 100%;
+    font-size: 27px;
+}
+
+.enter-details-flexbox {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}

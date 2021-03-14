@@ -3,6 +3,7 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { getOrders, deleteOrder } from "../redux/actions/ordersActions";
+import "./Order.css";
 
 class Orders extends React.Component {
   componentDidMount() {
@@ -18,7 +19,7 @@ class Orders extends React.Component {
           <div className="col">
             <h2>Service Orders</h2>
             {orders.length > 0 ? (
-              <table className="table" style={{ color: "white" }}>
+              <table className="table table-color">
                 <thead>
                   <tr>
                     <th scope="col">Phone Number</th>
@@ -59,7 +60,7 @@ class Orders extends React.Component {
                 </tbody>
               </table>
             ) : (
-              <h2 style={{ marginTop: "14rem" }}>...Loading Orders</h2>
+              <h2 className="loading-order-header ">...Loading Orders</h2>
             )}
           </div>
         </div>

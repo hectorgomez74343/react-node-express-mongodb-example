@@ -89,8 +89,11 @@ export function processOrder(order) {
         body: payload,
       });
 
+      window.location.replace("#/confirmation-order");
+
       dispatch(createOrderSuccess());
     } catch (e) {
+      window.location.replace("#/error");
       dispatch(createOrderFailure());
     }
   };
@@ -131,7 +134,6 @@ export function deleteOrder(id) {
       });
       dispatch(deleteOrderSuccess(id));
     } catch (e) {
-      console.log(e, "e");
       dispatch(getOrdersFailure());
     }
   };

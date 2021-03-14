@@ -59,7 +59,7 @@ class Orders extends React.Component {
                 </tbody>
               </table>
             ) : (
-              <h2>...Loading</h2>
+              <h2 style={{ marginTop: "14rem" }}>...Loading Orders</h2>
             )}
           </div>
         </div>

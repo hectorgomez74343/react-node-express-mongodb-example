@@ -60,7 +60,7 @@ class Orders extends React.Component {
                 </tbody>
               </table>
             ) : (
-              <h2 className="loading-order-header ">...Loading Orders</h2>
+              <h2 className="loading-order-header">...Loading Orders</h2>
             )}
           </div>
         </div>

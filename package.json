@@ -1,0 +1,17 @@
+{
+  "name": "react-node-express-mongodb-example",
+  "version": "1.0.0",
+  "description": "Example of how to React, Redux, Node JS, Express JS, and Mongo DB.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "1.19.0",
+    "express": "4.17.1",
+    "mongodb": "3.3.4"
+  }
+}

@@ -1,20 +1,20 @@
-import { ADD_ORDER_TYPE, ADD_ORDER, REMOVE_ORDER } from "../../types";
-const date = new Date();
+import {
+  ADD_ORDER_TYPE,
+  CREATE_ORDER_REQUEST,
+  CREATE_ORDER_REQUEST_SUCCESS,
+  CREATE_ORDER_REQUEST_FAILURE,
+  GET_ORDERS_REQUEST,
+  GET_ORDERS_SUCCESS,
+  GET_ORDERS_FAILURE,
+  DELETE_ORDER_REQUEST,
+  DELETE_ORDER_SUCCESS,
+  DELETE_ORDER_FAILURE,
+} from "../../types";
 
 const INTIAL_STATE = {
+  loading: false,
   orderType: {},
-  orders: [
-    {
-      id: 1,
-      name: "Nicholas",
-      lastName: "Tesla",
-      time: date.toString(),
-      type: "Cable and Internet",
-      phoneNumber: "202-000-3949",
-      address: "232 A St Austin Texas 29292",
-      email: "nickolas@gmail.com",
-    },
-  ],
+  orders: [],
 };
 
 function ordersReducer(state = INTIAL_STATE, action) {
@@ -34,14 +34,39 @@ function ordersReducer(state = INTIAL_STATE, action) {
         orderType: { text, image, title, phoneNumber, email, address },
       };
 
-    case ADD_ORDER:
-      const newArr = [...state.orders, action.payload];
-      return { ...state, orders: newArr };
+    case CREATE_ORDER_REQUEST:
+      return { ...state, loading: true };
 
-    case REMOVE_ORDER:
+    case CREATE_ORDER_REQUEST_SUCCESS:
+      return { ...state, loading: false };
+
+    case CREATE_ORDER_REQUEST_FAILURE:
+      return { ...state, loading: false };
+
+    case DELETE_ORDER_REQUEST:
+      return { ...state, loading: true };
+
+    case DELETE_ORDER_SUCCESS:
       return {
-        orders: state.orders.filter((order) => order.id !== action.payload.id),
+        ...state,
+        orders: state.orders.filter((order) => order._id !== action.payload),
+        loading: false,
       };
+
+    case DELETE_ORDER_FAILURE:
+      return {
+        ...state,
+        loading: false,
+      };
+
+    case GET_ORDERS_REQUEST:
+      return { ...state, loading: true };
+
+    case GET_ORDERS_SUCCESS:
+      return { ...state, orders: action.payload, loading: false };
+
+    case GET_ORDERS_FAILURE:
+      return { ...state, loading: false };
 
     default:
       return state;

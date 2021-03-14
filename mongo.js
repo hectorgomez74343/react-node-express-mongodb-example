@@ -7,7 +7,12 @@ const url =
 const createProduct = async (req, res, next) => {
   const newProduct = {
     name: req.body.name,
-    price: req.body.price,
+    lastName: req.body.lastName,
+    time: req.body.time,
+    type: req.body.type,
+    phoneNumber: req.body.phoneNumber,
+    email: req.body.email,
+    address: req.body.address,
   };
   const client = new MongoClient(url);
 
@@ -79,7 +84,12 @@ const deleteProduct = async (req, res, next) => {
 const updateProduct = async (req, res, next) => {
   const newProduct = {
     name: req.body.name,
-    price: req.body.price,
+    lastName: req.body.lastName,
+    time: req.body.time,
+    type: req.body.type,
+    phoneNumber: req.body.phoneNumber,
+    email: req.body.email,
+    address: req.body.address,
   };
   const client = new MongoClient(url);
   const id = new ObjectID(req.body.id);

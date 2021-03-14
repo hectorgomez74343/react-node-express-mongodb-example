@@ -1,7 +1,8 @@
 import React from "react";
+import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { addOrder } from "../redux/actions/ordersActions";
+import { processOrder } from "../redux/actions/ordersActions";
 
 class Scheduler extends React.Component {
   state = {
@@ -19,7 +20,7 @@ class Scheduler extends React.Component {
     history.push("/");
   };
   confirmOrder = () => {
-    const { history, addOrdr } = this.props;
+    const { history, createOrder } = this.props;
     const { title } = this.props.orderType;
     const date = new Date();
     const { name, lastName, phoneNumber, email, address } = this.state;
@@ -34,10 +35,9 @@ class Scheduler extends React.Component {
         formError: true,
       });
     }
-    addOrdr({
+    createOrder({
       name,
       lastName,
-      id: Math.floor(100000 + Math.random() * 900000),
       time: date.toString(),
       type: title,
       phoneNumber,
@@ -193,7 +193,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    addOrdr: (order) => dispatch(addOrder(order)),
+    createOrder: bindActionCreators(processOrder, dispatch),
   };
 }
 

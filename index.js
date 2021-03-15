@@ -11,15 +11,15 @@ app.use(bodyParser.json());
 
 app.use(express.static("build"));
 
-app.post("/products", mongoPractice.createProduct);
+app.post("/orders", mongoPractice.createOrder);
 
-app.put("/product", mongoPractice.updateProduct);
+app.put("/order", mongoPractice.updateOrder);
 
-app.get("/products", mongoPractice.getProducts);
+app.get("/orders", mongoPractice.getOrders);
 
-app.get("/product", mongoPractice.getProduct);
+app.get("/order", mongoPractice.getOrder);
 
-app.delete("/product", mongoPractice.deleteProduct);
+app.delete("/order", mongoPractice.deleteOrder);
 
 app.listen(PORT, () => {
   console.log(`listening in port ${PORT}`);

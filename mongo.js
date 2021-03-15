@@ -4,8 +4,8 @@ const ObjectID = require("mongodb").ObjectID;
 const url =
   "mongodb+srv://admin:admin@cluster0.m6n2l.mongodb.net/products-potato?retryWrites=true&w=majority";
 
-const createProduct = async (req, res, next) => {
-  const newProduct = {
+const createOrder = async (req, res, next) => {
+  const newOrder = {
     name: req.body.name,
     lastName: req.body.lastName,
     time: req.body.time,
@@ -19,61 +19,61 @@ const createProduct = async (req, res, next) => {
   try {
     await client.connect();
     const db = client.db();
-    await db.collection("products").insertOne(newProduct);
+    await db.collection("orders").insertOne(newOrder);
   } catch (error) {
     return res.json({ message: "Could not store data." });
   }
   client.close();
 
-  res.json(newProduct);
+  res.json(newOrder);
 };
 
-const getProducts = async (req, res, next) => {
+const getOrders = async (req, res, next) => {
   const client = new MongoClient(url);
 
-  let products;
+  let orders;
 
   try {
     await client.connect();
     const db = client.db();
-    products = await db.collection("products").find().toArray();
+    orders = await db.collection("orders").find().toArray();
   } catch (error) {
-    return res.json({ message: "Could not retrieve products." });
+    return res.json({ message: "Could not retrieve orders." });
   }
   client.close();
 
-  res.json(products);
+  res.json(orders);
 };
 
-const getProduct = async (req, res, next) => {
+const getOrder = async (req, res, next) => {
   const client = new MongoClient(url);
   const id = new ObjectID(req.body.id);
-  let product;
+  let order;
   try {
     await client.connect();
     const db = client.db();
-    product = await db.collection("products").findOne({
+    order = await db.collection("orders").findOne({
       $or: [{ _id: id }],
     });
   } catch (error) {
-    return res.json({ message: "Could not retrieve product." });
+    return res.json({ message: "Could not retrieve order." });
   }
 
   client.close();
 
-  res.json(product);
+  res.json(order);
 };
 
-const deleteProduct = async (req, res, next) => {
+const deleteOrder = async (req, res, next) => {
   const client = new MongoClient(url);
   const id = new ObjectID(req.body.id);
 
   try {
     await client.connect();
     const db = client.db();
-    await db.collection("products").deleteOne({ _id: id });
+    await db.collection("orders").deleteOne({ _id: id });
   } catch (error) {
-    return res.json({ message: "Could not delete product." });
+    return res.json({ message: "Could not delete order." });
   }
 
   client.close();
@@ -81,8 +81,8 @@ const deleteProduct = async (req, res, next) => {
   res.json({ message: "Deleted successfuly" });
 };
 
-const updateProduct = async (req, res, next) => {
-  const newProduct = {
+const updateOrder = async (req, res, next) => {
+  const newOrder = {
     name: req.body.name,
     lastName: req.body.lastName,
     time: req.body.time,
@@ -97,7 +97,7 @@ const updateProduct = async (req, res, next) => {
   try {
     await client.connect();
     const db = client.db();
-    await db.collection("products").replaceOne({ _id: id }, newProduct);
+    await db.collection("orders").replaceOne({ _id: id }, newOrder);
   } catch (error) {
     return res.json({ message: "Could not update data." });
   }
@@ -106,8 +106,8 @@ const updateProduct = async (req, res, next) => {
   res.json({ message: "Updated successfuly" });
 };
 
-exports.createProduct = createProduct;
-exports.getProducts = getProducts;
-exports.deleteProduct = deleteProduct;
-exports.getProduct = getProduct;
-exports.updateProduct = updateProduct;
+exports.createOrder = createOrder;
+exports.getOrders = getOrders;
+exports.deleteOrder = deleteOrder;
+exports.getOrder = getOrder;
+exports.updateOrder = updateOrder;

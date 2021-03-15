@@ -1,6 +1,6 @@
 {
   "name": "react-node-express-mongodb-example",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Example of how to React, Redux, Node JS, Express JS, and Mongo DB.",
   "main": "index.js",
   "scripts": {

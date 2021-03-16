@@ -10,6 +10,12 @@ import {
   DELETE_ORDER_SUCCESS,
   DELETE_ORDER_FAILURE,
 } from "../../types";
+import axios from "axios";
+
+const headers = {
+  "Content-Type": "application/json;charset=UTF-8",
+  "Access-Control-Allow-Origin": "*",
+};
 
 export function addOrderType(order) {
   return {
@@ -74,19 +80,17 @@ export function getOrdersFailure() {
     type: GET_ORDERS_FAILURE,
   };
 }
+const encryptedPassword = btoa("serverpassword");
+
 export function processOrder(order) {
+  const params = { ...order, password: encryptedPassword };
+
   return async function(dispatch) {
     dispatch(createOrderRequest());
     try {
-      const payload = JSON.stringify(order);
-
-      await fetch(process.env.REACT_APP_CREATE_ORDER, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: payload,
+      await axios.post(process.env.REACT_APP_CREATE_ORDER, {
+        headers: headers,
+        params,
       });
 
       window.location.replace("#/confirmation-order");
@@ -100,17 +104,17 @@ export function processOrder(order) {
 }
 
 export function getOrders() {
+  const params = { password: encryptedPassword };
+
   return async function(dispatch) {
     dispatch(getOrdersRequest());
+
     try {
-      const response = await fetch(process.env.REACT_APP_GET_ORDERS, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
+      const response = await axios.get(process.env.REACT_APP_GET_ORDERS, {
+        headers: headers,
+        params: params,
       });
-      const orders = await response.json();
+      const orders = await response.data;
 
       dispatch(getOrdersSuccess(orders));
     } catch (e) {
@@ -123,14 +127,10 @@ export function deleteOrder(id) {
   return async function(dispatch) {
     dispatch(deleteOrderRequest());
     try {
-      const payload = JSON.stringify({ id: id });
-      await fetch(process.env.REACT_APP_DELETE_ORDER, {
-        method: "DELETE",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: payload,
+      const params = { id, password: encryptedPassword };
+      await axios.delete(process.env.REACT_APP_DELETE_ORDER, {
+        headers: headers,
+        params,
       });
       dispatch(deleteOrderSuccess(id));
     } catch (e) {

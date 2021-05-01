@@ -1,9 +1,10 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+
 import Success from "./success";
 import "./ConfirmationPage.css";
 
-class ConfirmationPage extends React.Component {
+class ConfirmationPage extends React.PureComponent {
   routeToMainMenu = () => {
     this.props.history.push("/");
   };

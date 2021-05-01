@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
-class Error extends React.Component {
+class Error extends React.PureComponent {
   render() {
     return (
       <div className="container">

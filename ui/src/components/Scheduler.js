@@ -2,10 +2,11 @@ import React from "react";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+
 import { processOrder } from "../redux/actions/ordersActions";
 import "./Scheduler.css";
 
-class Scheduler extends React.Component {
+class Scheduler extends React.PureComponent {
   state = {
     address: "",
     email: "",

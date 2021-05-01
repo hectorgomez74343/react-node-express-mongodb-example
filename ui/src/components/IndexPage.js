@@ -1,8 +1,9 @@
 import React from "react";
-import Card from "./Card";
 import { withRouter } from "react-router-dom";
 
-class IndexPage extends React.Component {
+import Card from "./Card";
+
+class IndexPage extends React.PureComponent {
   render() {
     return (
       <div className="container">

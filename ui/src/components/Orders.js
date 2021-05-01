@@ -2,10 +2,11 @@ import React from "react";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+
 import { getOrders, deleteOrder } from "../redux/actions/ordersActions";
 import "./Order.css";
 
-class Orders extends React.Component {
+class Orders extends React.PureComponent {
   componentDidMount() {
     this.props.getOrdrs();
   }

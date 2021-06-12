@@ -6,11 +6,15 @@ import { connect } from "react-redux";
 import { getOrders, deleteOrder } from "../redux/actions/ordersActions";
 import "./Orders.css";
 let Orders = (props) => {
-  const { orders, getOrdrs, deleteOrdr } = props;
+  const { orders, getOrdrs, deleteOrdr, loading } = props;
 
   React.useEffect(() => {
     getOrdrs();
   }, []);
+
+  if (loading) {
+    return <h1 className="table-no-orders-color">...Loading orders</h1>;
+  }
 
   if (orders.length === 0) {
     return <h1 className="table-no-orders-color">You have no orders</h1>;
@@ -66,6 +70,7 @@ let Orders = (props) => {
 function mapStateToProps(state) {
   return {
     orders: state.ordersReducer.orders,
+    loading: state.ordersReducer.loading,
   };
 }
 

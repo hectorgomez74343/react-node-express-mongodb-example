@@ -1,6 +1,6 @@
 const path = require("path");
-const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const dotenv = require("dotenv-webpack");
 
 module.exports = {
   mode: "development",
@@ -13,18 +13,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src", "index.html"),
     }),
-    new webpack.DefinePlugin({
-      "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
-      "process.env.REACT_APP_GET_ORDERS": JSON.stringify(
-        process.env.REACT_APP_GET_ORDERS
-      ),
-      "process.env.REACT_APP_CREATE_ORDER": JSON.stringify(
-        process.env.REACT_APP_CREATE_ORDER
-      ),
-      "process.env.REACT_APP_DELETE_ORDER": JSON.stringify(
-        process.env.REACT_APP_DELETE_ORDER
-      ),
-    }),
+    new dotenv(),
   ],
   module: {
     rules: [

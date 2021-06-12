@@ -36,7 +36,6 @@ let Scheduler = (props) => {
     ) {
       return setFormError(true);
     }
-    console.log("hello");
     createOrder({
       name,
       lastName,
@@ -75,7 +74,7 @@ let Scheduler = (props) => {
   };
 
   if (processing) {
-    return <h1>...Processing Requesst</h1>;
+    return <h1 className="align-text">...Processing Requesst</h1>;
   }
 
   return (

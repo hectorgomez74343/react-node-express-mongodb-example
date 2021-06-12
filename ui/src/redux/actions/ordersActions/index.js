@@ -97,7 +97,7 @@ export function processOrder(order) {
 
       dispatch(createOrderSuccess());
     } catch (e) {
-      console.log(e, "e");
+      console.log(e, "ee");
       window.location.replace("#/error");
       dispatch(createOrderFailure());
     }

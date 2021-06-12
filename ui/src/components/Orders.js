@@ -48,7 +48,7 @@ let Orders = (props) => {
                       <button
                         type="button"
                         className="btn-danger"
-                        onClick={() => this.props.deleteOrdr(order._id)}
+                        onClick={() => deleteOrdr(order._id)}
                       >
                         Delete
                       </button>

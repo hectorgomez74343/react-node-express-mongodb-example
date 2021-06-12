@@ -1,44 +1,50 @@
 .scheduler-flex-box {
-    justify-content: center;
-    display: flex;
-    margin-bottom: 1rem;
+  justify-content: center;
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.align-text {
+  text-align: center;
+  color: white;
+  margin-top: 10rem;
 }
 
 .cards-flex-box {
-    display: flex; 
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .card-dimension {
-    width: 400px;
-    height: 400px;
+  width: 400px;
+  height: 400px;
 }
 
 .card-image {
-    width: 26rem;
+  width: 26rem;
 }
 
 .card-text {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .input-flex-box {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .inputs-header {
-    width: 100%;
-    font-size: 27px;
+  width: 100%;
+  font-size: 27px;
 }
 
 .inputs-margin {
-    text-align: center;
-    margin-bottom: 1rem;
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 .error-header {
-    color: red; 
-    text-align: center;
+  color: red;
+  text-align: center;
 }

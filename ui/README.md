@@ -1,4 +1,4 @@
-This is a open source, free, take home with you, at no cost, no legal issue to clone example on how to use React, Redux, React Router DOM.
+This is an example on how to create a basic website using React, Redux, and React Router with Webpack.
 
 To install dependencies
 npm install

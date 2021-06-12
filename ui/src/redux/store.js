@@ -1,6 +1,5 @@
-import { createStore, applyMiddleware, compose } from "redux";
+import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import reduxThunk from "redux-thunk";
-import { combineReducers } from "redux";
 import { createBrowserHistory } from "history";
 import ordersReducer from "./reducers/ordersReducer";
 

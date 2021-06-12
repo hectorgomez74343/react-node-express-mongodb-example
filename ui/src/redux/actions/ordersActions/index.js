@@ -85,7 +85,7 @@ const encryptedPassword = btoa("serverpassword");
 export function processOrder(order) {
   const params = { ...order, password: encryptedPassword };
 
-  return async function(dispatch) {
+  return async function (dispatch) {
     dispatch(createOrderRequest());
     try {
       await axios.post(process.env.REACT_APP_CREATE_ORDER, {
@@ -97,6 +97,7 @@ export function processOrder(order) {
 
       dispatch(createOrderSuccess());
     } catch (e) {
+      console.log(e, "e");
       window.location.replace("#/error");
       dispatch(createOrderFailure());
     }
@@ -106,7 +107,7 @@ export function processOrder(order) {
 export function getOrders() {
   const params = { password: encryptedPassword };
 
-  return async function(dispatch) {
+  return async function (dispatch) {
     dispatch(getOrdersRequest());
 
     try {
@@ -124,7 +125,7 @@ export function getOrders() {
 }
 
 export function deleteOrder(id) {
-  return async function(dispatch) {
+  return async function (dispatch) {
     dispatch(deleteOrderRequest());
     try {
       const params = { id, password: encryptedPassword };

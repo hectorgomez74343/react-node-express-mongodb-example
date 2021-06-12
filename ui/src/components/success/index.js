@@ -3,7 +3,7 @@ import Lottie from "react-lottie";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
-class Success extends React.Component {
+class Success extends React.PureComponent {
   state = {
     isStopped: false,
     isPaused: false,

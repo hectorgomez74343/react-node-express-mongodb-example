@@ -4,7 +4,7 @@ body {
   font-size: 20px;
   -webkit-font-smoothing: antialiased;
   line-height: 1.3;
-  background: url("/images/promo-bg.webp");
+  background: url("./images/promo-bg.webp");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -49,4 +49,93 @@ h2 {
   .CardGroup {
     grid-template-columns: repeat(1, 1fr);
   }
+}
+
+.btn-danger {
+  border-radius: 13px;
+  height: 2.3rem;
+  background: #dc3545;
+  color: white;
+  font-weight: 400;
+  border: 1px solid transparent;
+  border-color: #dc3545;
+  cursor: pointer;
+}
+
+.input-style {
+  text-align: center;
+  height: 1.7rem;
+  width: 15.5rem;
+  margin-top: 1rem;
+  border: 1px solid transparent;
+  border-radius: 1rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+.order-suit-h3 {
+  width: 100%;
+  font-size: 27px;
+  text-align: center;
+}
+
+.flexbox-one {
+  justify-content: center;
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.flexbox-two {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flexbox-three {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flexbox-four {
+  display: flex;
+  justify-content: center;
+}
+
+.card-display {
+  width: 400px;
+  height: 400px;
+}
+
+.card-display-width {
+  width: 26rem;
+}
+
+.font-display-image {
+  font-size: 20px;
+}
+
+.error-message-order-suit {
+  color: #dc3545;
+  text-align: center;
+}
+
+.phone-text-size {
+  font-size: 2rem;
+}
+
+.table {
+  color: white;
+}
+
+.table-no-orders-color {
+  text-align: center;
+  color: white;
 }

@@ -18,8 +18,8 @@ class App extends React.PureComponent {
           path="/confirmation-order"
           render={() => <ConfirmationPage />}
         />
-        <Route exact path="/error" render={() => <Error />} />
         <Route exact path="/orders" render={() => <Orders />} />
+        <Route exact path="/error" render={() => <Error />} />
       </Switch>
     );
   }

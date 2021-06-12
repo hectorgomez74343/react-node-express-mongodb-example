@@ -1,3 +1,14 @@
+.card-text-alignment {
+  margin-left: 1.2rem;
+  margin-top: 0rem;
+}
+
+.Card-Flex-Box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .Card {
   width: 300px;
   height: 225px;
@@ -27,6 +38,7 @@
   height: 110%;
   z-index: -1;
   transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  width: 100%;
 }
 
 .Card p {
@@ -138,4 +150,5 @@ h3 {
 .phone-number {
   color: white;
   text-align: center;
+  font-size: 25px;
 }

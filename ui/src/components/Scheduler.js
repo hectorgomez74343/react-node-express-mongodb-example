@@ -1,32 +1,32 @@
 import React from "react";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 
 import { processOrder } from "../redux/actions/ordersActions";
 import "./Scheduler.css";
 
-class Scheduler extends React.PureComponent {
-  state = {
-    address: "",
-    email: "",
-    name: "",
-    lastName: "",
-    error:
-      "You need to enter your first name, last name, phone number, address and email to order a service.",
-    formError: false,
-    phoneNumber: "",
-    processing: false,
-  };
-  routeToRoot = () => {
-    const { history } = this.props;
+let Scheduler = (props) => {
+  const [processing, setProcessing] = React.useState(false);
+  const [address, setAddress] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [name, setName] = React.useState("");
+  const [lastName, setLastName] = React.useState("");
+  const [error, setError] = React.useState(
+    "You need to enter your first name, last name, phone number, address and email to order a suit."
+  );
+  const [formError, setFormError] = React.useState(false);
+  const [phoneNumber, setPhoneNumber] = React.useState("");
+  const orderType = useSelector((state) => state.ordersReducer.orderType);
+  const { text, image, title, price } = orderType;
+  const { history, createOrder } = props;
+
+  const routeToRoot = () => {
     history.push("/");
   };
-  confirmOrder = () => {
-    const { createOrder } = this.props;
-    const { title } = this.props.orderType;
+  const confirmOrder = () => {
     const date = new Date();
-    const { name, lastName, phoneNumber, email, address } = this.state;
+
     if (
       name.length === 0 ||
       lastName.length === 0 ||
@@ -34,10 +34,9 @@ class Scheduler extends React.PureComponent {
       email.length === 0 ||
       address.length === 0
     ) {
-      return this.setState({
-        formError: true,
-      });
+      return setFormError(true);
     }
+    console.log("hello");
     createOrder({
       name,
       lastName,
@@ -47,120 +46,103 @@ class Scheduler extends React.PureComponent {
       email,
       address,
     });
-    this.setState({ processing: true });
+    setProcessing(true);
   };
 
-  setValue = (e) => {
+  const setValue = (e) => {
     const { name, value } = e.target;
 
-    this.setState({
-      [name]: value,
-      formError: false,
-    });
+    if (name === "name") {
+      setName(value);
+      return setError(false);
+    }
+    if (name === "lastName") {
+      setLastName(value);
+      return setError(false);
+    }
+    if (name === "phoneNumber") {
+      setPhoneNumber(value);
+      return setError(false);
+    }
+    if (name === "address") {
+      setAddress(value);
+      return setError(false);
+    }
+    if (name === "email") {
+      setEmail(value);
+      return setError;
+    }
   };
-  render() {
-    const { text, image, title } = this.props.orderType;
-    const {
-      address,
-      email,
-      name,
-      lastName,
-      error,
-      formError,
-      phoneNumber,
-      processing,
-    } = this.state;
 
-    return (
-      <React.Fragment>
-        {processing ? (
-          <div className="container">
-            <h2 className="processing-request-header">...Processing Request</h2>
-          </div>
-        ) : (
-          <div className="container">
-            <div className="row">
-              <div className="col">
-                <h2>Order your service</h2>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col different-service-flex-box">
-                <button
-                  className="btn btn-danger"
-                  type="button"
-                  onClick={this.routeToRoot}
-                >
-                  Click to order a different service
-                </button>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col">
-                <div className="Cards card-flex-box">
-                  <div className="Card card-size" onClick={this.confirmOrder}>
-                    <img src={image} alt={title} className="card-size-image" />
-                    <h3>{title}</h3>
-                    <h3 className="card-size-text">{text}</h3>
-                  </div>
-                </div>
-              </div>
-              <div className="col">
-                <div className="enter-details-flexbox">
-                  <h3 className="enter-details-header">
-                    Enter your first name, last name, phone number, address, and
-                    email.
-                  </h3>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Enter your name"
-                    className="input-text"
-                    onChange={this.setValue}
-                    value={name}
-                  />
-                  <input
-                    type="text"
-                    name="lastName"
-                    placeholder="Enter your last name"
-                    className="input-text"
-                    onChange={this.setValue}
-                    value={lastName}
-                  />
-                  <input
-                    type="tel"
-                    name="phoneNumber"
-                    placeholder="Enter your phone number"
-                    className="input-text"
-                    onChange={this.setValue}
-                    value={phoneNumber}
-                  />
-                  <input
-                    type="text"
-                    name="address"
-                    placeholder="Enter your address"
-                    className="input-text"
-                    onChange={this.setValue}
-                    value={address}
-                  />
-                  <input
-                    type="text"
-                    name="email"
-                    placeholder="Enter your email"
-                    className="input-text"
-                    onChange={this.setValue}
-                    value={email}
-                  />
-                  {formError ? <p className="error-text">{error}</p> : null}
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-      </React.Fragment>
-    );
+  if (processing) {
+    return <h1>...Processing Requesst</h1>;
   }
-}
+
+  return (
+    <div>
+      <h2>Order your suit</h2>
+      <div className="flexbox-one">
+        <button className="btn-danger" type="button" onClick={routeToRoot}>
+          Click to order a different suit
+        </button>
+      </div>
+      <div className="flexbox-two">
+        <div className="Card card-display" onClick={confirmOrder}>
+          <img src={image} alt={title} className="card-display-width" />
+          <h3>{title}</h3>
+          <h3>{price}</h3>
+          <h3 className="font-display-image">{text}</h3>
+        </div>
+      </div>
+      <div className="flexbox-three">
+        <h3 className="order-suit-h3">
+          Enter your first name, last name, phone number, address, and email.
+        </h3>
+        <input
+          type="text"
+          name="name"
+          placeholder="Enter your name"
+          className="input-style"
+          onChange={setValue}
+          value={name}
+        />
+        <input
+          type="text"
+          name="lastName"
+          placeholder="Enter your last name"
+          className="input-style"
+          onChange={setValue}
+          value={lastName}
+        />
+        <input
+          type="tel"
+          name="phoneNumber"
+          placeholder="Enter your phone number"
+          className="input-style"
+          onChange={setValue}
+          value={phoneNumber}
+        />
+        <input
+          type="text"
+          name="address"
+          placeholder="Enter your address"
+          className="input-style"
+          onChange={setValue}
+          value={address}
+        />
+        <input
+          type="text"
+          name="email"
+          placeholder="Enter your email"
+          className="input-style"
+          onChange={setValue}
+          value={email}
+        />
+        {formError ? <p className="error-message-order-suit">{error}</p> : null}
+      </div>
+    </div>
+  );
+};
 
 function mapStateToProps(state) {
   return {
@@ -174,6 +156,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(Scheduler)
-);
+Scheduler = withRouter(connect(mapStateToProps, mapDispatchToProps)(Scheduler));
+
+export default Scheduler;

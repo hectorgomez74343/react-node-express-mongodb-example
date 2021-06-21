@@ -13,8 +13,7 @@ class Card extends React.PureComponent {
     addOrdType({
       image,
       title,
-      text:
-        "Click this image once you are done entering your first name, last name, phone number, address, and email to order your service.",
+      text: "Click this image once you are done entering your first name, last name, phone number, address, and email to order your food.",
     });
   };
 
